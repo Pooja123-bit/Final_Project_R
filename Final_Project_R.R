@@ -121,14 +121,14 @@ Habitat_condition<-function(y){
   return(x)
 }, .inform=T,.progress = "text")
 
-##Reshaping data with ‘melt’ and/or ‘dcast’ (5 points)
+##Reshaping data with ‘melt’ and/or ‘dcast’ [5 points]
 melt1<-melt(data=a,id.vars=c("Quadrat","Habitat"), measure.vars=c("ShellHeight"))
 melt1
 
 cast1<-dcast(data=melt1,formula=Quadrat~variable, fun.aggregate=mean)
 cast1
 
-##For Loop converting um to m (10 points)
+##For Loop converting um to m [10 points]
 p = data.frame(1:10)
 p$meter = NA
 names(p) = c("micrometer","meter")
@@ -136,13 +136,13 @@ for(x in 1:10){
   p[x,]$meter = (p[x,]$micrometer *.000001)
 }
 
-##Histogram (5 points)
+##Histogram [5 points]
 his<-ggplot(data = a, aes(x = ShellHeight)) +
    geom_histogram(binwidth = 5, color="black", fill="yellow")+
    facet_wrap(.~Habitat)
 his
 
-##Point, bar, or line plot (whichever makes the most sense) (5 points)
+##Point, bar, or line plot (whichever makes the most sense) [5 points]
 point<-ggplot(data = a, aes(x = ShellHeight, y=Habitat)) +
    geom_point(color="deeppink")
 point
@@ -156,22 +156,22 @@ line<- ggplot(data=a, aes(x=ShellHeight,y=Habitat)) + geom_line(color="deeppink"
 line
 
 ##‘ggplot’ with at least 2 geoms (e.g. point, bar, tile), use one of the ‘scale_’ geoms,
-#and adjusting the theme of the plot (10 points)
+#and adjusting the theme of the plot [10 points]
 ggplot(data=a, aes(x=ShellHeight,y=Habitat)) + 
   geom_point(color="deeppink") +geom_tile()+
   scale_fill_continuous(type='viridis')+
   theme_bw()
 
 
-##A map of showing the geographic location where the data was collected
-getbb('Rhode Island')
+##A map of showing the geographic location where the data was collected [10 points]
+getbb('Rhode Island') 
 map.RI = get_stamenmap(bbox = getbb('Rhode Island'),
                              zoom = 9, map = 'terrain')
 ggmap(map.RI)
   
-##Exporting data set
+##Exporting data set [2 points]
 dir.create("C:/Users/pooja/OneDrive/Desktop/R/Final_Project_R")
   
-##Exporting and saving figures from ggplot
+##Exporting and saving figures from ggplot [2 points]
 ggsave("a.jpeg")
 
